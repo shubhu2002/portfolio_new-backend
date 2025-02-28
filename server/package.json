@@ -1,0 +1,50 @@
+{
+  "name": "portfolio_new-backend",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "scripts": {
+    "start": "node dist/app.js",
+    "build": "tsc --project tsconfig.json",
+    "dev": "concurrently \"tsc --watch --project tsconfig.json\" \"nodemon dist/app.js\"",
+    "format": "prettier --write './src/**/*.{ts,js,json}'",
+    "typecheck":"tsc --noEmit",
+    "lint": "eslint './src/**/*.{ts,js}'"
+  },
+  "keywords": [
+    "Express",
+    "Typescript",
+    "MongoDB",
+    "Mongoose"
+  ],
+  "author": "Shubhanshu Saxena",
+  "license": "ISC",
+  "packageManager": "pnpm@10.4.1",
+  "dependencies": {
+    "axios": "^1.8.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "gridfs-stream": "^1.1.1",
+    "mongodb": "^6.13.1",
+    "mongoose": "^8.10.2",
+    "multer": "1.4.5-lts.1",
+    "path": "^0.12.7",
+    "zod": "^3.24.2"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.0",
+    "@types/gridfs-stream": "^0.5.39",
+    "@types/multer": "^1.4.12",
+    "@types/node": "^22.13.5",
+    "concurrently": "^9.1.2",
+    "eslint": "^9.21.0",
+    "eslint-config-prettier": "^10.0.1",
+    "eslint-plugin-prettier": "^5.2.3",
+    "nodemon": "^3.1.9",
+    "prettier": "^3.5.2",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.3"
+  }
+}
