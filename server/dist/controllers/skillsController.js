@@ -1,28 +1,21 @@
-import multer from "multer";
-import path from "path";
 import Skills from "../models/Skills.js";
 import { SkillsZodSchem } from "../types/index.js";
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, "src/uploads/"); // Make sure you have 'uploads' folder in root
-    },
-    filename: (req, file, cb) => {
-        cb(null, Date.now() + path.extname(file.originalname)); // unique filename
-    },
-});
-export const upload = multer({ storage });
 export const createSkill = async (req, res) => {
     try {
-        const { name, category } = req.body;
-        const image = req.file
-            ? `server/src/uploads/${req.file.filename}`
-            : undefined;
-        const newSkill = SkillsZodSchem.parse({ name, image, category });
-        const skill = new Skills(newSkill);
-        const savedSkill = await skill.save();
+        const body = req.body;
+        console.log(body);
+        const savedSkills = [];
+        for (const s of body) {
+            const newSkill = SkillsZodSchem.parse(s);
+            const skill = new Skills(newSkill);
+            console.log(skill);
+            const savedSkill = await skill.save();
+            console.log(savedSkill);
+            savedSkills.push(savedSkill);
+        }
         res.status(200).json({
             status: true,
-            data: savedSkill,
+            data: savedSkills,
         });
     }
     catch (error) {

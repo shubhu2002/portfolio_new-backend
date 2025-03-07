@@ -24,15 +24,17 @@ export const ProjectZodSchema = z.object({
   category: z.string().array(),
 });
 
+
+export const allowedCategories = ["WEB", "SERVER", "AI", "OTHER"] as const;
+export type CategoryType = (typeof allowedCategories)[number];
 export interface SkillsConstructor {
+  id: number;
   name: string;
-  image?: string;
-  category?: string;
+  category: CategoryType;
 }
 
 export const SkillsZodSchem = z.object({
+  id: z.number(),
   name: z.string(),
-  image: z.string().optional(),
-  category: z.string().optional(),
-  fieldId: z.string().optional(),
+  category: z.enum(allowedCategories),
 });

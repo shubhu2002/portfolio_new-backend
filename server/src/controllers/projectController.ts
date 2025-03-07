@@ -6,9 +6,7 @@ import { ProjectConstructor, ProjectZodSchema } from "../types/index.js";
 export const createProject = async (req: Request, res: Response) => {
   try {
     const newProject = ProjectZodSchema.parse(req.body);
-
     const project = new Project(newProject);
-
     const savedProject = await project.save();
 
     res.status(200).json({

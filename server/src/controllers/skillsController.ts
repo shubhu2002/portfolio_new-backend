@@ -1,37 +1,27 @@
 import type { Request, Response } from "express";
-import multer from "multer";
-import path from "path";
 
 import Skills from "../models/Skills.js";
 import { SkillsConstructor, SkillsZodSchem } from "../types/index.js";
 
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, "src/uploads/"); // Make sure you have 'uploads' folder in root
-  },
-  filename: (req, file, cb) => {
-    cb(null, Date.now() + path.extname(file.originalname)); // unique filename
-  },
-});
-
-export const upload = multer({ storage });
-
 export const createSkill = async (req: Request, res: Response) => {
   try {
-    const { name, category } = req.body;
-    const image = req.file
-      ? `server/src/uploads/${req.file.filename}`
-      : undefined;
+    const body: SkillsConstructor[] = req.body;
+    console.log(body);
+    const savedSkills: SkillsConstructor[] = [];
 
-    const newSkill = SkillsZodSchem.parse({ name, image, category });
+    for (const s of body) {
+      const newSkill = SkillsZodSchem.parse(s);
+      const skill = new Skills(newSkill);
 
-    const skill = new Skills(newSkill);
-
-    const savedSkill = await skill.save();
+      console.log(skill);
+      const savedSkill = await skill.save();
+      console.log(savedSkill);
+      savedSkills.push(savedSkill);
+    }
 
     res.status(200).json({
       status: true,
-      data: savedSkill as SkillsConstructor,
+      data: savedSkills as SkillsConstructor[],
     });
   } catch (error: any) {
     res.status(500).json({
@@ -50,7 +40,7 @@ export const updatePSkillById = async (req: Request, res: Response) => {
       {
         $set: updatedSkill,
       },
-      { new: true },
+      { new: true }
     );
     res.status(200).json({
       status: true,

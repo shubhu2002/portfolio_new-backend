@@ -10,9 +10,9 @@ export const ProjectZodSchema = z.object({
     github_link: z.string().optional(),
     category: z.string().array(),
 });
+export const allowedCategories = ["WEB", "SERVER", "AI", "OTHER"];
 export const SkillsZodSchem = z.object({
+    id: z.number(),
     name: z.string(),
-    image: z.string().optional(),
-    category: z.string().optional(),
-    fieldId: z.string().optional(),
+    category: z.enum(allowedCategories),
 });

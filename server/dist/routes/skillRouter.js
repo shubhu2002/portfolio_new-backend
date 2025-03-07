@@ -1,7 +1,7 @@
 import { Router } from "express";
-import { createSkill, updatePSkillById, deleteSkillById, getAllSkills, upload, } from "../controllers/skillsController.js";
+import { createSkill, updatePSkillById, deleteSkillById, getAllSkills, } from "../controllers/skillsController.js";
 const router = Router();
-router.post("/create", upload.single("image"), createSkill);
+router.post("/create", createSkill);
 router.put("/:id", updatePSkillById);
 router.delete("/:id", deleteSkillById);
 router.get("/all", getAllSkills);
