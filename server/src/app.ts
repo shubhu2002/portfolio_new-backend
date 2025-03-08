@@ -4,8 +4,8 @@ import dotenv from "dotenv";
 
 import MongooseConnect from "./mongoose/index.js";
 
-import projectRouter from "./routes/project.route.js";
-import skillRouter from "./routes/skill.route.js";
+import projectRouter from "./routes/projectRoute.js";
+import skillRouter from "./routes/skillRoute.js";
 
 dotenv.config();
 
@@ -20,6 +20,7 @@ app.get("/", (req: Request, res: Response) => {
 
 app.use("/api/v1/projects", projectRouter);
 app.use("/api/v1/skills", skillRouter);
+
 
 app.listen(process.env.PORT || 5000, () => {
   MongooseConnect();
