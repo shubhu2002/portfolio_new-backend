@@ -2,15 +2,14 @@
   "name": "portfolio_new-backend",
   "version": "1.0.0",
   "description": "",
-  "type": "module",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "start": "node dist/app.js",
+    "start": "node dist/src/app.js",
     "build": "tsc --project tsconfig.json",
     "dev": "concurrently \"tsc --watch --project tsconfig.json\" \"nodemon dist/app.js\"",
-    "format": "prettier --write './src/**/*.{ts,js,json}'",
-    "typecheck":"tsc --noEmit",
-    "lint": "eslint './src/**/*.{ts,js}'"
+    "lint": "eslint './src/**/*.{ts,js}'",
+    "format": "prettier --write './src/**/*.{ts,js,json}'"
   },
   "keywords": [
     "Express",

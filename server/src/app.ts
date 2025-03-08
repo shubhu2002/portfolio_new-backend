@@ -4,8 +4,8 @@ import dotenv from "dotenv";
 
 import MongooseConnect from "./mongoose/index.js";
 
-import projectRouter from "./routes/projectRouter.js";
-import skillRouter from "./routes/skillRouter.js";
+import projectRouter from "./routes/project.route.js";
+import skillRouter from "./routes/skill.route.js";
 
 dotenv.config();
 
